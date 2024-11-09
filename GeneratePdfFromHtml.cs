@@ -56,15 +56,16 @@ public class GeneratePdfFromHtml
         {
             Browser = SupportedBrowser.Chromium,
             Headless = true,
+            Timeout = 0,
             ExecutablePath = path,
-            Args = new[] { "--no-sandbox" }
+            Args = new[] { "--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu" }
         };
 
 
         using (var browser = await Puppeteer.LaunchAsync(launchOptions))
         using (var page = await browser.NewPageAsync())
         {
-            await page.SetContentAsync(html);
+            await page.SetContentAsync(html, new NavigationOptions { Timeout = 3000 });
 
             var pdfOptions = new PdfOptions
             {
@@ -75,7 +76,7 @@ public class GeneratePdfFromHtml
                 FooterTemplate = footerTemplate,
                 HeaderTemplate = headerTemplate,
                 MarginOptions = marginOption,
-                OmitBackground = true
+                OmitBackground = true,
             };
             return await page.PdfDataAsync(pdfOptions);
         }
@@ -92,15 +93,16 @@ public class GeneratePdfFromHtml
         {
             Browser = SupportedBrowser.Chromium,
             Headless = true,
+            Timeout = 0,
             ExecutablePath = path,
-            Args = new[] { "--no-sandbox" }
+            Args = new[] { "--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu" }
         };
 
 
         using (var browser = await Puppeteer.LaunchAsync(launchOptions))
         using (var page = await browser.NewPageAsync())
         {
-            await page.SetContentAsync(html);
+            await page.SetContentAsync(html, new NavigationOptions { Timeout = 3000 });
 
             var pdfOptions = new PdfOptions
             {
@@ -122,20 +124,20 @@ public class GeneratePdfFromHtml
         await new BrowserFetcher().DownloadAsync();
 
         string path = SeachFile(new DirectoryInfo(Directory.GetCurrentDirectory()), fileFind);
-
         var launchOptions = new LaunchOptions
         {
             Browser = SupportedBrowser.Chromium,
             Headless = true,
+            Timeout = 0,
             ExecutablePath = path,
-            Args = new[] { "--no-sandbox" }
+            Args = new[] { "--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu" }
         };
 
 
         using (var browser = await Puppeteer.LaunchAsync(launchOptions))
         using (var page = await browser.NewPageAsync())
         {
-            await page.SetContentAsync(html);
+            await page.SetContentAsync(html, new NavigationOptions { Timeout = 3000 });
 
             var pdfOptions = new PdfOptions
             {
@@ -153,7 +155,7 @@ public class GeneratePdfFromHtml
         }
     }
 
-public async Task<byte[]> GeneratePdf12_10()
+    public async Task<byte[]> GeneratePdf12_10()
     {
         await new BrowserFetcher().DownloadAsync();
 
@@ -163,15 +165,15 @@ public async Task<byte[]> GeneratePdf12_10()
         {
             Browser = SupportedBrowser.Chromium,
             Headless = true,
+            Timeout = 0,
             ExecutablePath = path,
-            Args = new[] { "--no-sandbox" }
+            Args = new[] { "--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu" }
         };
-
 
         using (var browser = await Puppeteer.LaunchAsync(launchOptions))
         using (var page = await browser.NewPageAsync())
         {
-            await page.SetContentAsync(html);
+            await page.SetContentAsync(html, new NavigationOptions { Timeout = 3000 });
 
             var pdfOptions = new PdfOptions
             {
